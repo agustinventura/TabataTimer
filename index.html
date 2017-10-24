@@ -8,6 +8,8 @@
     <script type="text/javascript" src="lib/tau/wearable/js/tau.min.js"></script>
 	<!-- load theme file for your application -->
 	<link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/tabataTimer.js"></script>
 </head>
 <body>
 	<div class="ui-page ui-page-active" id="roundsPage">
@@ -15,15 +17,29 @@
 			<h2 class="ui-title">Rounds</h2>
 		</header>
 		<div class="ui-content content-padding">
-			<p>Hello! </p>
+            <button id="decreaseRounds">-</button>
+  			&nbsp;
+  			<button id="increaseRounds">+</button>
+            <br />
+			<p id="rounds">Rounds</p>
 		</div>
+        <div class="ui-footer ui-bottom-button">
+            <a id="setRounds" class="ui-btn">Set</a>
+        </div>
 	</div>
-    <div class="ui-page ui-page-active" id="workTimePage">
+    <div class="ui-page" id="workTimePage">
         <header class="ui-header">
             <h2 class="ui-title">Work Time</h2>
         </header>
         <div class="ui-content content-padding">
-            <p>Hello! </p>
+            <button id="decreaseWorkSeconds">-</button>
+            &nbsp;
+            <button id="increaseWorkSeconds">+</button>
+            <br />
+            <p id="workSeconds">Work Time</p>
+        </div>
+        <div class="ui-footer ui-bottom-button">
+            <a id="setWorkTime" class="ui-btn">Set</a>
         </div>
     </div>
     <div class="ui-page" id="restTimePage">
@@ -31,7 +47,28 @@
             <h2 class="ui-title">Rest Time</h2>
         </header>
         <div class="ui-content content-padding">
-            <p>Hello! </p>
+            <button id="decreaseRestSeconds">-</button>
+            &nbsp;
+            <button id="increaseRestSeconds">+</button>
+            <br />
+            <p id="restSeconds">Rest Time</p>
+        </div>
+        <div class="ui-footer ui-bottom-button">
+            <a id="setRestTime" class="ui-btn">Set</a>
+        </div>
+    </div>
+    <div class="ui-page" id="tabataPage">
+        <header class="ui-header">
+            <h2 class="ui-title">Tabata in progress</h2>
+        </header>
+        <div class="ui-content content-padding">
+            <p>Rounds: <span id="round">round</span></p>
+            <p>Left: <span id="roundsLeft">left</span></p>
+            <p>Time: time</p>
+        </div>
+        <div class="ui-footer ui-bottom-button">
+            <a id="start" class="ui-btn">Start</a>
+            <a id="stop" class="ui-btn">Stop</a>
         </div>
     </div>
 </body>
