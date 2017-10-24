@@ -3,6 +3,8 @@ var roundsCount = 0;
 var workSeconds = 20;
 var restSeconds = 10;
 var secondsOffset = 5;
+var rest = true;
+var countDown = null;
 
 function init() {
     $("#rounds").text(rounds);
@@ -26,8 +28,10 @@ function init() {
 }
 
 function decreaseRounds() {
-    rounds--;
-    $("#rounds").text(rounds);
+    if (rounds > 1) {
+        rounds--;
+        $("#rounds").text(rounds);
+    }
 }
 
 function increaseRounds() {
@@ -37,11 +41,15 @@ function increaseRounds() {
 
 function decreaseSeconds(actionComponent, targetComponent) {
     if (actionComponent === "work") {
-        workSeconds -= secondsOffset;
-        $(targetComponent).text(workSeconds);
+        if (workSeconds > secondsOffset) {
+            workSeconds -= secondsOffset;
+            $(targetComponent).text(workSeconds);
+        }
     } else if (actionComponent === "rest") {
-        restSeconds -= secondsOffset;
-        $(targetComponent).text(restSeconds);
+        if (restSeconds > secondsOffset) {
+            restSeconds -= secondsOffset;
+            $(targetComponent).text(restSeconds);
+        }
     }
 }
 
@@ -53,6 +61,54 @@ function increaseSeconds(actionComponent, targetComponent) {
         restSeconds += secondsOffset;
         $(targetComponent).text(restSeconds);
     }
+}
+
+function updateRounds() {
+    $("#round").text(roundsCount);
+    $("#totalRounds").text(rounds);
+}
+
+function nextInterval() {
+    clearInterval(countDown);
+    navigator.vibrate(2000);
+    navigator.notification.beep(2);
+    if (roundsCount < rounds) {
+        rest = !rest;
+        if (rest) {
+            $("#interval").text("Rest for");
+            $("#secondsLeft").text(restSeconds);
+            roundsCount++;
+            countdown(restSeconds);
+        } else {
+            updateRounds();
+            $("#interval").text("Work for");
+            $("#secondsLeft").text(workSeconds);
+            countdown(workSeconds);
+        }
+    } else {
+        updateRounds();
+        $("#interval").text("Tabata");
+        $("#secondsLeft").text("finished");
+    }
+}
+
+function countdown(seconds) {
+    countDown = setInterval(function () {
+        seconds--;
+        $("#secondsLeft").text(seconds);
+        if (seconds < 1) {
+            nextInterval();
+        }
+    }, 1000);
+}
+
+function startWorkout() {
+    $("#start").hide();
+    $("#stop").show();
+    rest = false;
+    $("#interval").text("Work for");
+    $("#secondsLeft").text(workSeconds);
+    countdown(workSeconds);
 }
 
 function roundsSet() {
@@ -77,15 +133,13 @@ function workTimeSet() {
 
 function restTimeSet() {
     $("#start").click(function () {
-        $("#start").hide();
-        $("#stop").show();
+        startWorkout();
     });
     $("#stop").click(function () {
         $("#stop").hide();
         $("#start").show();
     });
-    $("#round").text(roundsCount);
-    $("#roundsLeft").text(rounds - roundsCount);
+    updateRounds();
     tau.changePage("#tabataPage")
 }
 
