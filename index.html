@@ -10,6 +10,10 @@
 	<link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/tabataTimer.js"></script>
+    <style>
+   .btn-icon-cancel::before {-webkit-mask-image: url(./img/cancel.png)}
+   .btn-icon-ok::before {-webkit-mask-image: url(./img/ok.png)}
+</style>
 </head>
 <body>
 	<div class="ui-page ui-page-active" id="roundsPage">
@@ -17,10 +21,6 @@
 			<h2 class="ui-title">Rounds</h2>
 		</header>
 		<div class="ui-content content-padding">
-            <button id="decreaseRounds">-</button>
-  			&nbsp;
-  			<button id="increaseRounds">+</button>
-            <br />
 			<p id="rounds">Rounds</p>
 		</div>
         <div class="ui-footer ui-bottom-button">
@@ -32,10 +32,6 @@
             <h2 class="ui-title">Work Time</h2>
         </header>
         <div class="ui-content content-padding">
-            <button id="decreaseWorkSeconds">-</button>
-            &nbsp;
-            <button id="increaseWorkSeconds">+</button>
-            <br />
             <p id="workSeconds">Work Time</p>
         </div>
         <div class="ui-footer ui-bottom-button">
@@ -47,10 +43,6 @@
             <h2 class="ui-title">Rest Time</h2>
         </header>
         <div class="ui-content content-padding">
-            <button id="decreaseRestSeconds">-</button>
-            &nbsp;
-            <button id="increaseRestSeconds">+</button>
-            <br />
             <p id="restSeconds">Rest Time</p>
         </div>
         <div class="ui-footer ui-bottom-button">
@@ -71,10 +63,11 @@
         </div>
     </div>
     <div id="pausePopup" class="ui-popup">
+        <div class="ui-popup-header">Pause</div>
         <div class="ui-popup-content">Do you want to exit?</div>
         <div class="ui-popup-footer ui-grid-col-2 ui-side-button">
-            <button id="resume" class="ui-btn">No</button>
-            <button id="exit" class="ui-btn">Yes</button>
+            <button id="resume" class="ui-btn btn-icon-cancel">No</button>
+            <button id="exit" class="ui-btn btn-icon-ok">Yes</button>
         </div>
     </div>
 </body>
