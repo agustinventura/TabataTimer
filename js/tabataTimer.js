@@ -97,13 +97,17 @@ function nextInterval() {
 
 function countdown(seconds) {
     intervalSeconds = seconds;
-    countDown = setInterval(function () {
-        intervalSeconds--;
-        $("#secondsLeft").text(intervalSeconds);
-        if (intervalSeconds < 1) {
-            nextInterval();
-        }
-    }, 1000);
+    if (seconds === 1) {
+        nextInterval();
+    } else {
+        countDown = setInterval(function () {
+            intervalSeconds--;
+            $("#secondsLeft").text(intervalSeconds);
+            if (intervalSeconds < 1) {
+                nextInterval();
+            }
+        }, 1000);
+    }
 }
 
 function resumeWorkout() {
