@@ -5,6 +5,7 @@ var restSeconds = 10;
 var secondsOffset = 5;
 var rest = true;
 var countDown = null;
+var intervalSeconds = null;
 
 function init() {
     $("#rounds").text(rounds);
@@ -70,8 +71,8 @@ function updateRounds() {
 
 function nextInterval() {
     clearInterval(countDown);
-    navigator.vibrate(2000);
-    navigator.notification.beep(2);
+    //navigator.vibrate(2000);
+    //navigator.notification.beep(2);
     if (roundsCount < rounds) {
         rest = !rest;
         if (rest) {
@@ -89,23 +90,46 @@ function nextInterval() {
         updateRounds();
         $("#interval").text("Tabata");
         $("#secondsLeft").text("finished");
+        $("#start").show();
+        $("#pause").hide();
     }
 }
 
 function countdown(seconds) {
+    intervalSeconds = seconds;
     countDown = setInterval(function () {
-        seconds--;
-        $("#secondsLeft").text(seconds);
-        if (seconds < 1) {
+        intervalSeconds--;
+        $("#secondsLeft").text(intervalSeconds);
+        if (intervalSeconds < 1) {
             nextInterval();
         }
     }, 1000);
 }
 
+function resumeWorkout() {
+    $("#pause").show();
+    tau.closePopup("#pausePopup");
+    countdown(intervalSeconds);
+}
+
+function pauseWorkout() {
+    $("#pause").hide();
+    clearInterval(countDown);
+    tau.openPopup("#pausePopup");
+    $("#resume").click(function () {
+        resumeWorkout();
+    });
+    $("#exit").click(function() {
+        tizen.application.getCurrentApplication().exit();
+    });
+}
+
 function startWorkout() {
     $("#start").hide();
-    $("#stop").show();
+    $("#pause").show();
     rest = false;
+    roundsCount = 0;
+    updateRounds();
     $("#interval").text("Work for");
     $("#secondsLeft").text(workSeconds);
     countdown(workSeconds);
@@ -135,9 +159,8 @@ function restTimeSet() {
     $("#start").click(function () {
         startWorkout();
     });
-    $("#stop").click(function () {
-        $("#stop").hide();
-        $("#start").show();
+    $("#pause").click(function () {
+        pauseWorkout();
     });
     updateRounds();
     tau.changePage("#tabataPage")
