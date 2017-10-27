@@ -16,6 +16,7 @@
 .ui-header .ui-title {
     color: #D6EDBD;
 }
+
 .ui-btn {
     background-color: #7FA6A1;
     color: #D6EDBD;
@@ -34,14 +35,36 @@ a.ui-btn:active:hover,
     border: 3px solid #D6EDBD;
 }
 
-.ui-popup .ui-popup-content {
+.ui-popup .ui-popup-header {
     background-color: #5D7370;
     color: #D6EDBD;
 }
 
+.ui-popup .ui-popup-content {
+    background-color: #FFF5BC;
+    color: #5D7370;
+}
+
+.btn-icon-cancel {
+    background: #7FA6A1 url(../img/cancel.png) no-repeat 50% 100%;
+}
+
+.btn-icon-ok {
+    background: #7FA6A1 url(../img/ok.png) no-repeat 50% 100%;
+}
+
 body {
     color: #5D7370;
-    font-weight: bold;
+    text-align: center;
+}
+
+hr {
+    height: 9px;
+    width: 80%;
+    color: #D6EDBD;
+    background: #D6EDBD;
+    font-size: 0;
+    border: 0;
 }
 
 .roundsSumUp {

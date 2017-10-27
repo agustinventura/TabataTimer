@@ -100,20 +100,21 @@ function nextInterval() {
     if (roundsCount < rounds) {
         rest = !rest;
         if (rest) {
-            $("#interval").text("Rest for");
+            $("#currentStatus").text("Rest...");
             $("#secondsLeft").text(restSeconds);
             roundsCount++;
             countdown(restSeconds);
         } else {
             updateRounds();
-            $("#interval").text("Work for");
+            $("#currentStatus").text("Work!");
             $("#secondsLeft").text(workSeconds);
             countdown(workSeconds);
         }
     } else {
         updateRounds();
-        $("#interval").text("Tabata");
-        $("#secondsLeft").text("finished");
+        $("#currentStatus").text("Tabata finished!");
+        $("#statusSecondsSeparator").show();
+        $("#secondsLeft").show();
         $("#start").show();
         $("#pause").hide();
     }
@@ -155,10 +156,12 @@ function pauseWorkout() {
 function startWorkout() {
     $("#start").hide();
     $("#pause").show();
+    $("#statusSecondsSeparator").show();
+    $("#secondsLeft").show();
     rest = false;
     roundsCount = 0;
     updateRounds();
-    $("#interval").text("Work for");
+    $("#currentStatus").text("Work!");
     $("#secondsLeft").text(workSeconds);
     countdown(workSeconds);
 }
@@ -185,6 +188,8 @@ function restTimeSet() {
         pauseWorkout();
     });
     updateRounds();
+    $("#statusSecondsSeparator").hide();
+    $("#secondsLeft").hide();
     tau.changePage("#tabataPage")
 }
 

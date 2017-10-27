@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width,user-scalable=no">
-	<title>Tabata Timer</title>
-	<link rel="stylesheet" href="lib/tau/wearable/theme/default/tau.min.css">
-	<link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)" href="lib/tau/wearable/theme/default/tau.circle.min.css">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <title>Tabata Timer</title>
+    <link rel="stylesheet" href="lib/tau/wearable/theme/default/tau.min.css">
+    <link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)"
+          href="lib/tau/wearable/theme/default/tau.circle.min.css">
     <script type="text/javascript" src="lib/tau/wearable/js/tau.min.js"></script>
-	<!-- load theme file for your application -->
-	<link rel="stylesheet" href="css/style.css">
+    <!-- load theme file for your application -->
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/tabataTimer.js"></script>
-    <style>
-   .btn-icon-cancel {background: url(./img/cancel.png) no-repeat}
-   .btn-icon-ok {background: url(./img/ok.png) no-repeat 50% 100%}
-</style>
 </head>
 <body>
-	<div class="ui-page ui-page-active" id="roundsPage">
-		<header class="ui-header">
-			<h2 class="ui-title">Rounds</h2>
-		</header>
-		<div class="ui-content content-padding">
-			<p id="rounds">Rounds</p>
-		</div>
-        <div class="ui-footer ui-bottom-button">
-            <a id="setRounds" class="ui-btn">Set</a>
-        </div>
-	</div>
-    <div class="ui-page" id="workTimePage">
-        <header class="ui-header">
-            <h2 class="ui-title">Work Time</h2>
-        </header>
-        <div class="ui-content content-padding">
-            <p id="workSeconds">Work Time</p>
-        </div>
-        <div class="ui-footer ui-bottom-button">
-            <a id="setWorkTime" class="ui-btn">Set</a>
-        </div>
+<div class="ui-page ui-page-active" id="roundsPage">
+    <header class="ui-header">
+        <h2 class="ui-title">Rounds</h2>
+    </header>
+    <div class="ui-content content-padding">
+        <p id="rounds">Rounds</p>
     </div>
-    <div class="ui-page" id="restTimePage">
-        <header class="ui-header">
-            <h2 class="ui-title">Rest Time</h2>
-        </header>
-        <div class="ui-content content-padding">
-            <p id="restSeconds">Rest Time</p>
-        </div>
-        <div class="ui-footer ui-bottom-button">
-            <a id="setRestTime" class="ui-btn">Set</a>
-        </div>
+    <div class="ui-footer ui-bottom-button">
+        <button id="setRounds" class="ui-btn">Set</button>
     </div>
-    <div class="ui-page" id="tabataPage">
-        <header class="ui-header">
-            <h2 class="ui-title">Tabata in progress</h2>
-        </header>
-        <div class="ui-content content-padding">
-            <p class="roundsSumUp"><span id="round">round</span>/<span id="totalRounds">total rounds</span></p>
-            <p class="currentStatus"><span id="interval">Tabata</span>&nbsp;<span id="secondsLeft">ready</span></p>
-        </div>
-        <div class="ui-footer ui-bottom-button">
-            <button id="start" class="ui-btn">Start</button>
-            <button id="pause" class="ui-btn">Pause</button>
-        </div>
+</div>
+<div class="ui-page" id="workTimePage">
+    <header class="ui-header">
+        <h2 class="ui-title">Work Time</h2>
+    </header>
+    <div class="ui-content content-padding">
+        <p id="workSeconds">Work Time</p>
     </div>
-    <div id="pausePopup" class="ui-popup">
-        <div class="ui-popup-header">Pause</div>
-        <div class="ui-popup-content">Do you want to exit?</div>
-        <div class="ui-popup-footer ui-grid-col-2 ui-side-button">
-            <button id="resume" class="ui-btn btn-icon-cancel">No</button>
-            <button id="exit" class="ui-btn btn-icon-ok">Yes</button>
-        </div>
+    <div class="ui-footer ui-bottom-button">
+        <button id="setWorkTime" class="ui-btn">Set</button>
     </div>
+</div>
+<div class="ui-page" id="restTimePage">
+    <header class="ui-header">
+        <h2 class="ui-title">Rest Time</h2>
+    </header>
+    <div class="ui-content content-padding">
+        <p id="restSeconds">Rest Time</p>
+    </div>
+    <div class="ui-footer ui-bottom-button">
+        <button id="setRestTime" class="ui-btn">Set</button>
+    </div>
+</div>
+<div class="ui-page" id="tabataPage">
+    <header class="ui-header">
+        <h2 class="ui-title">Tabata in progress</h2>
+    </header>
+    <div class="ui-content content-padding">
+        <p class="roundsSumUp"><span id="round">round</span>/<span id="totalRounds">total rounds</span></p>
+        <hr>
+        <p id="currentStatus" class="currentStatus">Ready?</p>
+        <hr id="statusSecondsSeparator">
+        <p id="secondsLeft"></p>
+    </div>
+    <div class="ui-footer ui-bottom-button">
+        <button id="start" class="ui-btn">Start</button>
+        <button id="pause" class="ui-btn">Pause</button>
+    </div>
+</div>
+<div id="pausePopup" class="ui-popup">
+    <div class="ui-popup-header">Pause</div>
+    <div class="ui-popup-content">Do you want to exit?</div>
+    <div class="ui-popup-footer ui-grid-col-2 ui-side-button">
+        <button id="resume" class="ui-btn btn-icon-cancel">No</button>
+        <button id="exit" class="ui-btn btn-icon-ok">Yes</button>
+    </div>
+</div>
 </body>
 </html>
