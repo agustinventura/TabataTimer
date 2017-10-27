@@ -11,12 +11,6 @@ function init() {
     $("#rounds").text(rounds);
     $("#workSeconds").text(workSeconds);
     $("#restSeconds").text(restSeconds);
-    $("#decreaseRounds").click(function () {
-        decreaseRounds();
-    });
-    $("#increaseRounds").click(function () {
-        increaseRounds();
-    });
     $("#setRounds").click(function () {
         roundsSet();
     });
@@ -26,6 +20,36 @@ function init() {
     $("#setRestTime").click(function () {
         restTimeSet();
     });
+    document.addEventListener('rotarydetent', function(ev) {
+		setsRotaryControl(ev);
+	});
+}
+
+function setsRotaryControl(ev) {
+	var direction = ev.detail.direction;
+	if (direction === "CW") {
+		increaseRounds();
+	} else {
+		decreaseRounds();
+	}
+}
+
+function workRotaryControl(ev) {
+	var direction = ev.detail.direction;
+	if (direction === "CW") {
+		increaseSeconds("work", "#workSeconds");
+	} else {
+		decreaseSeconds("work", "#workSeconds");
+	}
+}
+
+function restRotaryControl(ev) {
+	var direction = ev.detail.direction;
+	if (direction === "CW") {
+		increaseSeconds("rest", "#restSeconds");
+	} else {
+		decreaseSeconds("rest", "#restSeconds");
+	}
 }
 
 function decreaseRounds() {
@@ -112,7 +136,7 @@ function countdown(seconds) {
 
 function resumeWorkout() {
     $("#pause").show();
-    tau.closePopup("#pausePopup");
+    tau.closePopup();
     countdown(intervalSeconds);
 }
 
@@ -140,22 +164,16 @@ function startWorkout() {
 }
 
 function roundsSet() {
-    $("#decreaseWorkSeconds").click(function () {
-        decreaseSeconds("work", "#workSeconds");
-    });
-    $("#increaseWorkSeconds").click(function () {
-        increaseSeconds("work", "#workSeconds");
-    });
+    document.addEventListener('rotarydetent', function(ev) {
+    	workRotaryControl(ev);
+	});
     tau.changePage("#workTimePage")
 }
 
 function workTimeSet() {
-    $("#decreaseRestSeconds").click(function () {
-        decreaseSeconds("rest", "#restSeconds");
-    });
-    $("#increaseRestSeconds").click(function () {
-        increaseSeconds("rest", "#restSeconds");
-    });
+    document.addEventListener('rotarydetent', function(ev) {
+    	restRotaryControl(ev);
+	});
     tau.changePage("#restTimePage")
 }
 
