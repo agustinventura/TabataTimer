@@ -1,29 +1,55 @@
-* {
-    font-family: Verdana, Lucida Sans, Arial, Helvetica, sans-serif;
+/* Colors from zen master II theme: https://color.adobe.com/es/zen-master-II-color-theme-9738414
+* dark-blue: #5D7370
+* light-blue: #7FA6A1
+* dark-green: #B8D9B8
+* light-green: #D6EDBD
+* cream: #FFF5BC
+*/
+.ui-content {
+    background-color: #FFF5BC;
+}
+
+.ui-header {
+    background-color: #5D7370;
+}
+
+.ui-header .ui-title {
+    color: #D6EDBD;
+}
+.ui-btn {
+    background-color: #7FA6A1;
+    color: #D6EDBD;
+}
+
+a.ui-btn:active:hover,
+.ui-btn:enabled:active:hover {
+    background-color: #5D7370;
+}
+
+.ui-btn:enabled:focus {
+    background-color: #5D7370;
+}
+
+.ui-popup {
+    border: 3px solid #D6EDBD;
+}
+
+.ui-popup .ui-popup-content {
+    background-color: #5D7370;
+    color: #D6EDBD;
 }
 
 body {
-    margin: 0px auto;
-    background-color:#222;
+    color: #5D7370;
+    font-weight: bold;
 }
 
-.contents {
-	display: flex;
-	display: -webkit-flex;
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	height:320px;
+.roundsSumUp {
+    text-align: center;
+    font-size: larger;
 }
 
-.content-padding {
-	margin-top: 16px;
-	margin-bottom: 16px;
-	padding-left: 16px;
-	padding-right: 16px;
-}
-
-.content_text {
-	font-weight:bold;
-	font-size:5em;
-	color:#fff;
+.currentStatus {
+    text-align: center;
+    font-size: larger;
 }
