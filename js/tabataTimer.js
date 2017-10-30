@@ -23,6 +23,22 @@ function init() {
     document.addEventListener('rotarydetent', function(ev) {
 		setsRotaryControl(ev);
 	});
+    window.addEventListener('tizenhwkey', function onTizenHwKey(e) {
+        var activePageId = tau.activePage.id;
+        if (e.keyName === 'back') {
+            if (activePageId === 'roundsPage') {
+            	tizen.application.getCurrentApplication().exit();
+            } else if (activePageId === 'tabataPage') {
+                if (countDown !== null) {
+                	pauseWorkout();
+                } else {
+                	history.back();
+                }
+            } else {
+                history.back();
+            }
+        }
+    });
 }
 
 function setsRotaryControl(ev) {
@@ -95,8 +111,8 @@ function updateRounds() {
 
 function nextInterval() {
     clearInterval(countDown);
-    //navigator.vibrate(2000);
-    //navigator.notification.beep(2);
+    navigator.vibrate(2000);
+    navigator.notification.beep(2);
     if (roundsCount < rounds) {
         rest = !rest;
         if (rest) {
