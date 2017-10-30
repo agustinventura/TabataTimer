@@ -95,24 +95,24 @@ function updateRounds() {
 
 function nextInterval() {
     clearInterval(countDown);
-    //navigator.vibrate(2000);
-    //navigator.notification.beep(2);
+    navigator.vibrate(2000);
+    navigator.notification.beep(2);
     if (roundsCount < rounds) {
         rest = !rest;
         if (rest) {
-            $("#currentStatus").text("Rest...");
+            $("#currentStatus").text("Descansa...");
             $("#secondsLeft").text(restSeconds);
             roundsCount++;
             countdown(restSeconds);
         } else {
             updateRounds();
-            $("#currentStatus").text("Work!");
+            $("#currentStatus").text("¡Vamos!");
             $("#secondsLeft").text(workSeconds);
             countdown(workSeconds);
         }
     } else {
         updateRounds();
-        $("#currentStatus").text("Tabata finished!");
+        $("#currentStatus").text("¡Tabata terminado!");
         $("#statusSecondsSeparator").show();
         $("#secondsLeft").show();
         $("#start").show();
@@ -161,7 +161,7 @@ function startWorkout() {
     rest = false;
     roundsCount = 0;
     updateRounds();
-    $("#currentStatus").text("Work!");
+    $("#currentStatus").text("¡Vamos!");
     $("#secondsLeft").text(workSeconds);
     countdown(workSeconds);
 }
