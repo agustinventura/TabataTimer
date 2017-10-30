@@ -170,14 +170,14 @@ function roundsSet() {
     document.addEventListener('rotarydetent', function(ev) {
     	workRotaryControl(ev);
 	});
-    tau.changePage("#workTimePage")
+    tau.changePage("#workTimePage");
 }
 
 function workTimeSet() {
     document.addEventListener('rotarydetent', function(ev) {
     	restRotaryControl(ev);
 	});
-    tau.changePage("#restTimePage")
+    tau.changePage("#restTimePage");
 }
 
 function restTimeSet() {
@@ -190,7 +190,8 @@ function restTimeSet() {
     updateRounds();
     $("#statusSecondsSeparator").hide();
     $("#secondsLeft").hide();
-    tau.changePage("#tabataPage")
+    $(".ui-title").width("100%");
+    tau.changePage("#tabataPage");
 }
 
 $(document).ready(function () {
