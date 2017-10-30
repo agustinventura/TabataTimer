@@ -6,6 +6,7 @@ var secondsOffset = 5;
 var rest = true;
 var countDown = null;
 var intervalSeconds = null;
+var paused = false;
 
 function init() {
     $("#rounds").text(rounds);
@@ -30,7 +31,11 @@ function init() {
             	tizen.application.getCurrentApplication().exit();
             } else if (activePageId === 'tabataPage') {
                 if (countDown !== null) {
-                	pauseWorkout();
+                	if (!paused) {
+                		pauseWorkout();
+                	} else {
+                		resumeWorkout();
+                	}
                 } else {
                 	history.back();
                 }
@@ -112,24 +117,25 @@ function updateRounds() {
 function nextInterval() {
     clearInterval(countDown);
     navigator.vibrate(2000);
-    navigator.notification.beep(2);
+    navigator.notification.beep(3);
     if (roundsCount < rounds) {
         rest = !rest;
         if (rest) {
-            $("#interval").text("Rest for");
+            $("#currentStatus").text("Descansa...");
             $("#secondsLeft").text(restSeconds);
             roundsCount++;
             countdown(restSeconds);
         } else {
             updateRounds();
-            $("#interval").text("Work for");
+            $("#currentStatus").text("¡Vamos!");
             $("#secondsLeft").text(workSeconds);
             countdown(workSeconds);
         }
     } else {
         updateRounds();
-        $("#interval").text("Tabata");
-        $("#secondsLeft").text("finished");
+        $("#currentStatus").text("¡Tabata terminado!");
+        $("#statusSecondsSeparator").show();
+        $("#secondsLeft").show();
         $("#start").show();
         $("#pause").hide();
     }
@@ -151,12 +157,14 @@ function countdown(seconds) {
 }
 
 function resumeWorkout() {
+	paused = false;
     $("#pause").show();
     tau.closePopup();
     countdown(intervalSeconds);
 }
 
 function pauseWorkout() {
+	paused = true;
     $("#pause").hide();
     clearInterval(countDown);
     tau.openPopup("#pausePopup");
@@ -171,10 +179,12 @@ function pauseWorkout() {
 function startWorkout() {
     $("#start").hide();
     $("#pause").show();
+    $("#statusSecondsSeparator").show();
+    $("#secondsLeft").show();
     rest = false;
     roundsCount = 0;
     updateRounds();
-    $("#interval").text("Work for");
+    $("#currentStatus").text("¡Vamos!");
     $("#secondsLeft").text(workSeconds);
     countdown(workSeconds);
 }
@@ -183,14 +193,14 @@ function roundsSet() {
     document.addEventListener('rotarydetent', function(ev) {
     	workRotaryControl(ev);
 	});
-    tau.changePage("#workTimePage")
+    tau.changePage("#workTimePage");
 }
 
 function workTimeSet() {
     document.addEventListener('rotarydetent', function(ev) {
     	restRotaryControl(ev);
 	});
-    tau.changePage("#restTimePage")
+    tau.changePage("#restTimePage");
 }
 
 function restTimeSet() {
@@ -201,9 +211,17 @@ function restTimeSet() {
         pauseWorkout();
     });
     updateRounds();
-    tau.changePage("#tabataPage")
+    $("#statusSecondsSeparator").hide();
+    $("#secondsLeft").hide();
+    $(".ui-title").width("100%");
+    tau.changePage("#tabataPage");
 }
 
 $(document).ready(function () {
     init();
+    document.addEventListener('deviceready', onDeviceReady, false);
 });
+
+function onDeviceReady() {
+    console.log('Cordova features now available');
+}

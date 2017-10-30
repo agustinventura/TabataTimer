@@ -1,29 +1,127 @@
-* {
-    font-family: Verdana, Lucida Sans, Arial, Helvetica, sans-serif;
+/* Colors from zen master II theme: https://color.adobe.com/es/zen-master-II-color-theme-9738414
+* dark-blue: #5D7370
+* light-blue: #7FA6A1
+* dark-green: #B8D9B8
+* light-green: #D6EDBD
+* cream: #FFF5BC
+*/
+.ui-content {
+    background-color: #FFF5BC;
+}
+
+.ui-header {
+    background-color: #5D7370;
+    color: #D6EDBD;
+    display:flex;
+    justify-content: space-between;
+}
+
+.ui-header .ui-title {
+    color: #D6EDBD;
+    width: 60%;
+}
+
+.ui-btn {
+    background-color: #7FA6A1;
+    color: #D6EDBD;
+}
+
+a.ui-btn:active:hover,
+.ui-btn:enabled:active:hover {
+    background-color: #5D7370;
+}
+
+.ui-page .ui-footer.ui-bottom-button .ui-btn {
+	background-color: #7FA6A1;
+}
+
+.ui-btn:enabled:focus {
+    background-color: #5D7370;
+}
+
+.ui-popup {
+    border: 3px solid #D6EDBD;
+}
+
+.ui-popup .ui-popup-header {
+    background-color: #5D7370;
+    color: #D6EDBD;
+}
+
+.ui-popup .ui-popup-content {
+    background-color: #FFF5BC;
+    color: #5D7370;
+}
+
+.btn-icon-cancel {
+    background: #7FA6A1 url(../img/cancel.png) no-repeat 50% 50%;
+}
+
+.btn-icon-ok {
+    background: #7FA6A1 url(../img/ok.png) no-repeat 50% 50%;
 }
 
 body {
-    margin: 0px auto;
-    background-color:#222;
+    color: #5D7370;
+    text-align: center;
 }
 
-.contents {
-	display: flex;
-	display: -webkit-flex;
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	height:320px;
+hr {
+    height: 9px;
+    width: 80%;
+    color: #D6EDBD;
+    background: #D6EDBD;
+    font-size: 0;
+    border: 0;
 }
 
-.content-padding {
-	margin-top: 16px;
-	margin-bottom: 16px;
-	padding-left: 16px;
-	padding-right: 16px;
+.roundsSumUp {
+    text-align: center;
+    font-size: larger;
 }
 
-.content_text {
-	font-weight:bold;
-	font-size:5em;
-	color:#fff;
+.currentStatus {
+    text-align: center;
+    font-size: larger;
+}
+
+i {
+    border: solid #D6EDBD;;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.right-arrow {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    margin: 25px 25px 25px 0px;
+}
+
+.left-arrow {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    margin: 25px 0px 25px 25px;
+}
+
+.increaseText {
+    font-size: x-large;
+    float: left;
+}
+
+.decreaseText {
+    font-size: x-large;
+    float: right;
+}
+
+.increase {
+	padding-right: 50px;
+    padding-top: 50px;
+    width: 20%
+}
+
+.decrease {
+    padding-left: 50px;
+    padding-top: 50px;
+    width: 20%;
 }
