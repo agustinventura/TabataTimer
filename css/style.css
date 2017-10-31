@@ -31,6 +31,10 @@ a.ui-btn:active:hover,
     background-color: #5D7370;
 }
 
+.ui-page .ui-footer.ui-bottom-button .ui-btn {
+	background-color: #7FA6A1;
+}
+
 .ui-btn:enabled:focus {
     background-color: #5D7370;
 }
@@ -50,11 +54,11 @@ a.ui-btn:active:hover,
 }
 
 .btn-icon-cancel {
-    background: #7FA6A1 url(../img/cancel.png) no-repeat 50% 100%;
+    background: #7FA6A1 url(../img/cancel.png) no-repeat 50% 50%;
 }
 
 .btn-icon-ok {
-    background: #7FA6A1 url(../img/ok.png) no-repeat 50% 100%;
+    background: #7FA6A1 url(../img/ok.png) no-repeat 50% 50%;
 }
 
 body {
@@ -95,16 +99,29 @@ i {
 }
 
 .left-arrow {
-    float: left;
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
     margin: 25px 0px 25px 25px;
 }
 
-.increase {
+.increaseText {
     font-size: x-large;
+    float: left;
+}
+
+.decreaseText {
+    font-size: x-large;
+    float: right;
+}
+
+.increase {
+	padding-right: 50px;
+    padding-top: 50px;
+    width: 20%
 }
 
 .decrease {
-    font-size: x-large;
+    padding-left: 50px;
+    padding-top: 50px;
+    width: 20%;
 }

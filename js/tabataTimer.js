@@ -6,6 +6,7 @@ var secondsOffset = 5;
 var rest = true;
 var countDown = null;
 var intervalSeconds = null;
+var paused = false;
 
 function init() {
     $("#rounds").text(rounds);
@@ -23,6 +24,26 @@ function init() {
     document.addEventListener('rotarydetent', function(ev) {
 		setsRotaryControl(ev);
 	});
+    window.addEventListener('tizenhwkey', function onTizenHwKey(e) {
+        var activePageId = tau.activePage.id;
+        if (e.keyName === 'back') {
+            if (activePageId === 'roundsPage') {
+            	tizen.application.getCurrentApplication().exit();
+            } else if (activePageId === 'tabataPage') {
+                if (countDown !== null) {
+                	if (!paused) {
+                		pauseWorkout();
+                	} else {
+                		resumeWorkout();
+                	}
+                } else {
+                	history.back();
+                }
+            } else {
+                history.back();
+            }
+        }
+    });
 }
 
 function setsRotaryControl(ev) {
@@ -96,7 +117,7 @@ function updateRounds() {
 function nextInterval() {
     clearInterval(countDown);
     navigator.vibrate(2000);
-    navigator.notification.beep(2);
+    navigator.notification.beep(3);
     if (roundsCount < rounds) {
         rest = !rest;
         if (rest) {
@@ -136,12 +157,14 @@ function countdown(seconds) {
 }
 
 function resumeWorkout() {
+	paused = false;
     $("#pause").show();
     tau.closePopup();
     countdown(intervalSeconds);
 }
 
 function pauseWorkout() {
+	paused = true;
     $("#pause").hide();
     clearInterval(countDown);
     tau.openPopup("#pausePopup");
@@ -196,4 +219,9 @@ function restTimeSet() {
 
 $(document).ready(function () {
     init();
+    document.addEventListener('deviceready', onDeviceReady, false);
 });
+
+function onDeviceReady() {
+    console.log('Cordova features now available');
+}
