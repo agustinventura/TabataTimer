@@ -20,7 +20,7 @@
         <div class="increase"><img src="./img/increase.png"/></div>
     </header>
     <div class="ui-content content-padding">
-        <p id="rounds">Rondas</p>
+        <p id="rounds" class="selectText">Rondas</p>
     </div>
     <footer class="ui-footer ui-bottom-button">
         <button id="setRounds" class="ui-btn">Ya</button>
@@ -33,7 +33,7 @@
         <span class="increase">+5</span><i class="right-arrow"></i>
     </header>
     <div class="ui-content content-padding">
-        <p id="workSeconds">Trabajo</p>
+        <p id="workSeconds" class="selectText">Trabajo</p>
     </div>
     <footer class="ui-footer ui-bottom-button">
         <button id="setWorkTime" class="ui-btn">Ya</button>
@@ -46,7 +46,7 @@
         <span class="increase">+5</span><i class="right-arrow"></i>
     </header>
     <div class="ui-content content-padding">
-        <p id="restSeconds">Descanso</p>
+        <p id="restSeconds" class="selectText">Descanso</p>
     </div>
     <footer class="ui-footer ui-bottom-button">
         <button id="setRestTime" class="ui-btn">Listo</button>
@@ -57,11 +57,10 @@
         <h2 class="ui-title">Tabata listo</h2>
     </header>
     <div class="ui-content content-padding">
-        <p class="roundsSumUp"><span id="round">ronda</span>/<span id="totalRounds">rondas totales</span></p>
-        <hr>
-        <p id="currentStatus" class="currentStatus">&iquest;Listo?</p>
-        <hr id="statusSecondsSeparator">
-        <p id="secondsLeft"></p>
+        <p class="roundsSumUp"><span id="round">ronda</span>/<span id="totalRounds">rondas totales</span>&nbsp;
+        <span id="currentStatus" class="currentStatus">&iquest;Listo?</span>&nbsp;
+        <span id="secondsLeft"></span>
+        </p>
     </div>
     <footer class="ui-footer ui-bottom-button">
         <button id="start" class="ui-btn">Empezar</button>

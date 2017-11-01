@@ -1,42 +1,44 @@
-/* Colors from zen master II theme: https://color.adobe.com/es/zen-master-II-color-theme-9738414
-* dark-blue: #5D7370
-* light-blue: #7FA6A1
-* dark-green: #B8D9B8
-* light-green: #D6EDBD
-* cream: #FFF5BC
+/* Colors from reebok crossfit apparel theme: https://color.adobe.com/es/Reebok-CrossFit-Apparel-3-color-theme-7582648/
+* dark-red: #D7073C
+* light-red: #EF003D
+* grey: #F1F8F8
+* green: #7F9070
+* yellow: #EFDB46
 */
 .ui-content {
-    background-color: #FFF5BC;
+    background-color: #F1F8F8;
 }
 
 .ui-header {
-    background-color: #5D7370;
-    color: #D6EDBD;
+    background-color: #EFDB46;
+    color: #7F9070;
     display:flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .ui-header .ui-title {
-    color: #D6EDBD;
-    width: 60%;
+    color: #7F9070;
+    font-size: 35px;
+    margin: 0 20px 0 20px;
 }
 
 .ui-btn {
-    background-color: #7FA6A1;
-    color: #D6EDBD;
+    background-color: #EF003D;
+    color: #F1F8F8;
+    font-weight: bold;
 }
 
 a.ui-btn:active:hover,
 .ui-btn:enabled:active:hover {
-    background-color: #5D7370;
+    background-color: #D7073C
 }
 
 .ui-page .ui-footer.ui-bottom-button .ui-btn {
-	background-color: #7FA6A1;
+	background-color: #EF003D;
 }
 
 .ui-btn:enabled:focus {
-    background-color: #5D7370;
+    background-color: #D7073C;
 }
 
 .ui-popup {
@@ -115,13 +117,15 @@ i {
 }
 
 .increase {
-	padding-right: 50px;
     padding-top: 50px;
-    width: 20%
 }
 
 .decrease {
-    padding-left: 50px;
     padding-top: 50px;
-    width: 20%;
+}
+
+.selectText {
+	margin: 0.8em 0;
+	font-size: -webkit-xxx-large;
+    font-weight: bolder;
 }
