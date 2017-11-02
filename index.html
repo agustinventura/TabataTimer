@@ -28,9 +28,9 @@
 </div>
 <div class="ui-page" id="workTimePage">
     <header class="ui-header">
-        <i class="left-arrow"></i><span class="decrease">-5</span>
+        <div class="decrease"><img src="./img/decrease.png"/></div>
         <h2 class="ui-title">Trabajo</h2>
-        <span class="increase">+5</span><i class="right-arrow"></i>
+        <div class="increase"><img src="./img/increase.png"/></div>
     </header>
     <div class="ui-content content-padding">
         <p id="workSeconds" class="selectText">Trabajo</p>
@@ -41,9 +41,9 @@
 </div>
 <div class="ui-page" id="restTimePage">
     <header class="ui-header">
-        <i class="left-arrow"></i><span class="decrease">-5</span>
+        <div class="decrease"><img src="./img/decrease.png"/></div>
         <h2 class="ui-title">Descanso</h2>
-        <span class="increase">+5</span><i class="right-arrow"></i>
+        <div class="increase"><img src="./img/increase.png"/></div>
     </header>
     <div class="ui-content content-padding">
         <p id="restSeconds" class="selectText">Descanso</p>
@@ -54,12 +54,11 @@
 </div>
 <div class="ui-page" id="tabataPage">
     <header class="ui-header">
-        <h2 class="ui-title">Tabata listo</h2>
+        <h2 id="currentStatus" class="ui-title">&iquest;Listo?</h2>
     </header>
     <div class="ui-content content-padding">
         <p class="roundsSumUp"><span id="round">ronda</span>/<span id="totalRounds">rondas totales</span>&nbsp;
-        <span id="currentStatus" class="currentStatus">&iquest;Listo?</span>&nbsp;
-        <span id="secondsLeft"></span>
+        <p id="secondsLeft" class="secondsLeft">segundos</p>
         </p>
     </div>
     <footer class="ui-footer ui-bottom-button">
