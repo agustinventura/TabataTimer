@@ -10,16 +10,14 @@
 }
 
 .ui-header {
-    background-color: #EFDB46;
-    color: #7F9070;
+    background-color: #7F9070;
     display:flex;
     justify-content: center;
 }
 
 .ui-header .ui-title {
-    color: #7F9070;
-    font-size: 35px;
-    margin: 0 20px 0 20px;
+    color: #F1F8F8;
+    margin: 0;
 }
 
 .ui-btn {
@@ -46,20 +44,42 @@ a.ui-btn:active:hover,
 }
 
 .ui-popup .ui-popup-header {
-    background-color: #EFDB46;
-    color: #7F9070;
+    background-color: #7F9070;
+    color: #F1F8F8;
 }
 
 .ui-popup .ui-popup-content {
     background-color: #F1F8F8;
+    font-weight: bolder;
+    color: #7F9070;
+    padding-top: 60px;
+}
+
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(n) {
+	background-color: #EF003D;
+}
+
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(n):active {
+	background-color: #D7073C;
+}
+
+.ui-popup .ui-popup-footer.ui-side-button .ui-btn:nth-child(n)::after {
+    background-color: #D7073C;
+    -webkit-transition: opacity 250ms;
+    -moz-transition: opacity 250ms;
+    -o-transition: opacity 250ms;
+    -ms-transition: opacity 250ms;
+    transition: opacity 250ms;
+    opacity: 0;
+    z-index: -1;
 }
 
 .btn-icon-cancel {
-    background: #EF003D url(../img/cancel.png) no-repeat 50% 50%;
+    background: url(../img/cancel.png) no-repeat 50% 50%;
 }
 
 .btn-icon-ok {
-    background: #EF003D url(../img/ok.png) no-repeat 50% 50%;
+    background: url(../img/ok.png) no-repeat 50% 50%;
 }
 
 body {
@@ -70,7 +90,7 @@ body {
 .roundsSumUp {
     text-align: center;
     font-size: larger;
-    margin: 0.5em 0;
+    margin: 0;
 }
 
 .increase {
@@ -91,5 +111,5 @@ body {
     text-align: center;
     font-weight: bolder;
     font-size: -webkit-xxx-large;
-    margin: 1em 0 0.5em 0;
+    margin: 0.1em 0 0 0;
 }
