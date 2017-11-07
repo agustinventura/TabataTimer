@@ -117,7 +117,10 @@ function updateRounds() {
 function nextInterval() {
     clearInterval(countDown);
     navigator.vibrate(2000);
-    //navigator.notification.beep(3);
+    var audio = document.createElement('audio');
+    audio.src = '../snd/beep.mp3';
+    audio.name = 'beep';
+    audio.play();
     if (roundsCount < rounds) {
         rest = !rest;
         if (rest) {
@@ -158,21 +161,19 @@ function countdown(seconds) {
 
 function resumeWorkout() {
 	paused = false;
-    $("#pause").show();
     tau.closePopup();
     countdown(intervalSeconds);
 }
 
 function pauseWorkout() {
 	paused = true;
-    $("#pause").hide();
     clearInterval(countDown);
     tau.openPopup("#pausePopup");
     $("#resume").click(function () {
         resumeWorkout();
     });
     $("#exit").click(function() {
-        tizen.application.getCurrentApplication().exit();
+    	tizen.application.getCurrentApplication().exit();
     });
 }
 
@@ -186,6 +187,7 @@ function startWorkout() {
     updateRounds();
     $("#currentStatus").html("&iexcl;Vamos!");
     $("#secondsLeft").text(workSeconds);
+    $(".roundsSumUp").css('paddingBottom', '0');
     countdown(workSeconds);
 }
 
@@ -211,17 +213,10 @@ function restTimeSet() {
         pauseWorkout();
     });
     updateRounds();
-    $("#statusSecondsSeparator").hide();
+    $(".roundsSumUp").css('paddingBottom', '2rem');
     $("#secondsLeft").hide();
-    $(".ui-title").width("100%");
     tau.changePage("#tabataPage");
 }
 
-$(document).ready(function () {
-    init();
-    document.addEventListener('deviceready', onDeviceReady, false);
-});
+$(document).ready(function(){init()});
 
-function onDeviceReady() {
-    console.log('Cordova features now available');
-}
