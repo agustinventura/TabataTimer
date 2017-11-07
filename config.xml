@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://www.digitalsingular.com/TabataTimer" version="1.0.0" viewmodes="maximized">
-    <tizen:application id="nSBtnLlVwX.TabataTimer" package="nSBtnLlVwX" required_version="2.4"/>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://www.digitalsingular.com/TabataTimer" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="w9MyIoBFGd.TabataTimer" package="w9MyIoBFGd" required_version="2.3.2"/>
+    <author href="www.digitalsingular.com" email="agustinventura@gmail.com">Agustín Ventura</author>
     <content src="index.html"/>
     <feature name="http://tizen.org/feature/screen.size.normal"/>
     <icon src="icon.png"/>

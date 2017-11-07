@@ -11,13 +11,24 @@
 
 .ui-header {
     background-color: #7F9070;
-    display:flex;
-    justify-content: center;
+    width: 100%;
 }
 
 .ui-header .ui-title {
     color: #F1F8F8;
     margin: 0;
+}
+
+.increase {
+	padding-right: 50px;
+    padding-top: 50px;
+    float: right;
+}
+
+.decrease {
+	padding-left: 50px;
+    padding-top: 50px;
+    float: left;
 }
 
 .ui-btn {
@@ -91,14 +102,6 @@ body {
     text-align: center;
     font-size: larger;
     margin: 0;
-}
-
-.increase {
-    padding-top: 50px;
-}
-
-.decrease {
-    padding-top: 50px;
 }
 
 .selectText {
