@@ -10,6 +10,7 @@
 }
 
 .ui-header {
+	color: #F1F8F8;
     background-color: #7F9070;
     width: 100%;
 }
@@ -83,6 +84,10 @@ a.ui-btn:active:hover,
     transition: opacity 250ms;
     opacity: 0;
     z-index: -1;
+}
+
+.ui-popup.ui-scroll-on:not(.ui-ctxpopup):not(.ui-popup-toast) .ui-popup-header+.ui-popup-content {
+	padding: 30px 0 200px 0;	
 }
 
 .btn-icon-cancel {
