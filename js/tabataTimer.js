@@ -116,9 +116,9 @@ function updateRounds() {
 
 function nextInterval() {
     clearInterval(countDown);
-    navigator.vibrate(2000);
+    navigator.vibrate(500);
     var audio = document.createElement('audio');
-    audio.src = '../snd/beep.mp3';
+    audio.src = 'snd/beep.mp3';
     audio.name = 'beep';
     audio.play();
     if (roundsCount < rounds) {
@@ -136,6 +136,7 @@ function nextInterval() {
         }
     } else {
         updateRounds();
+        countDown = null;
         $("#currentStatus").html("&iquest;Otra?");
         $("#statusSecondsSeparator").show();
         $("#secondsLeft").show();
@@ -168,6 +169,7 @@ function resumeWorkout() {
 function pauseWorkout() {
 	paused = true;
     clearInterval(countDown);
+    countDown = null;
     tau.openPopup("#pausePopup");
     $("#resume").click(function () {
         resumeWorkout();
@@ -192,6 +194,9 @@ function startWorkout() {
 }
 
 function roundsSet() {
+	document.removeEventListener('rotarydetent', function(ev) {
+		setsRotaryControl(ev);
+	});
     document.addEventListener('rotarydetent', function(ev) {
     	workRotaryControl(ev);
 	});
@@ -199,6 +204,9 @@ function roundsSet() {
 }
 
 function workTimeSet() {
+	document.removeEventListener('rotarydetent', function(ev) {
+    	workRotaryControl(ev);
+	});
     document.addEventListener('rotarydetent', function(ev) {
     	restRotaryControl(ev);
 	});
@@ -206,6 +214,9 @@ function workTimeSet() {
 }
 
 function restTimeSet() {
+	document.removeEventListener('rotarydetent', function(ev) {
+    	restRotaryControl(ev);
+	});
     $("#start").click(function () {
         startWorkout();
     });
