@@ -7,6 +7,8 @@ var rest = true;
 var countDown = null;
 var intervalSeconds = null;
 var paused = false;
+var audio = null;
+var restAudio = null;
 
 function decreaseRounds() {
     if (rounds > 1) {
@@ -21,21 +23,11 @@ function increaseRounds() {
 }
 
 function setInitialListeners() {
-	$("#setRounds").click(function () {
-        roundsSet();
-    });
-    $("#setWorkTime").click(function () {
-        workTimeSet();
-    });
-    $("#setRestTime").click(function () {
-        restTimeSet();
-    });
-    $("#start").click(function () {
-        startWorkout();
-    });
-    $("#pause").click(function () {
-        pauseWorkout();
-    });
+	$("#setRounds").click(roundsSet);
+    $("#setWorkTime").click(workTimeSet);
+    $("#setRestTime").click(restTimeSet);
+    $("#start").click(startWorkout);
+    $("#pause").click(pauseWorkout);
     $("#increaseRounds").click(increaseRounds);
     $("#decreaseRounds").click(decreaseRounds);
     $("#increaseWork").click({actionComponent: "work", targetComponent: "#workSeconds"}, increaseSeconds);
@@ -45,19 +37,31 @@ function setInitialListeners() {
 	$(document).on('rotarydetent', function(ev) {
 		setsRotaryControl(ev);
 	});
-    window.addEventListener('tizenhwkey', function onTizenHwKey(e) {
+    $(window).on('tizenhwkey', function(e) {
         var activePageId = tau.activePage.id;
-        if (e.keyName === 'back') {
+        if (e.originalEvent.keyName === 'back') {
             if (activePageId === 'roundsPage') {
             	tizen.application.getCurrentApplication().exit();
             } else if (activePageId === 'tabataPage') {
-                    countDown = null;
+                    reset();
                 	history.back();
             } else {
                 history.back();
             }
         }
     });
+}
+
+function reset() {
+	roundsCount = 0;
+	clearInterval(countDown);
+	countDown = null;
+    intervalSeconds = null;
+    paused = false;
+    audio = null;
+    restAudio = null;
+    $("#start").show();
+    $("#pause").hide();
 }
 
 function init() {
@@ -126,18 +130,18 @@ function updateRounds() {
 function nextInterval() {
     clearInterval(countDown);
     navigator.vibrate(500);
-    var audio = document.createElement('audio');
-    audio.src = 'snd/beep.mp3';
-    audio.name = 'beep';
-    audio.play();
     if (roundsCount < rounds) {
         rest = !rest;
         if (rest) {
+        	restAudio.load();
+        	restAudio.play();
             $("#currentStatus").text("Descansa");
             $("#secondsLeft").text(restSeconds);
             roundsCount++;
             countdown(restSeconds);
         } else {
+        	audio.load();
+            audio.play();
             updateRounds();
             $("#currentStatus").html("&iexcl;Vamos!");
             $("#secondsLeft").text(workSeconds);
@@ -145,7 +149,7 @@ function nextInterval() {
         }
     } else {
         updateRounds();
-        countDown = null;
+        reset();
         $("#currentStatus").html("&iquest;Otra?");
         $("#statusSecondsSeparator").show();
         $("#secondsLeft").show();
@@ -191,7 +195,6 @@ function pauseWorkout() {
 function startWorkout() {
     $("#start").hide();
     $("#pause").show();
-    $("#statusSecondsSeparator").show();
     $("#secondsLeft").show();
     rest = false;
     roundsCount = 0;
@@ -199,6 +202,14 @@ function startWorkout() {
     $("#currentStatus").html("&iexcl;Vamos!");
     $("#secondsLeft").text(workSeconds);
     $(".roundsSumUp").css('paddingBottom', '0');
+    audio = document.createElement('audio');
+    audio.src = 'snd/beep.mp3';
+    audio.name = 'beep';
+    restAudio = document.createElement('audio');
+    restAudio.src = 'snd/beep2.mp3';
+    restAudio.name = 'beep2';
+    audio.load();
+    audio.play();
     countdown(workSeconds);
 }
 
@@ -226,4 +237,4 @@ function restTimeSet() {
     tau.changePage("#tabataPage");
 }
 
-$(document).ready(function(){init()});
+$(document).ready(init);
