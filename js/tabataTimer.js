@@ -8,11 +8,20 @@ var countDown = null;
 var intervalSeconds = null;
 var paused = false;
 
-function init() {
+function decreaseRounds() {
+    if (rounds > 1) {
+        rounds--;
+        $("#rounds").text(rounds);
+    }
+}
+
+function increaseRounds() {
+    rounds++;
     $("#rounds").text(rounds);
-    $("#workSeconds").text(workSeconds);
-    $("#restSeconds").text(restSeconds);
-    $("#setRounds").click(function () {
+}
+
+function setInitialListeners() {
+	$("#setRounds").click(function () {
         roundsSet();
     });
     $("#setWorkTime").click(function () {
@@ -21,7 +30,19 @@ function init() {
     $("#setRestTime").click(function () {
         restTimeSet();
     });
-    document.addEventListener('rotarydetent', function(ev) {
+    $("#start").click(function () {
+        startWorkout();
+    });
+    $("#pause").click(function () {
+        pauseWorkout();
+    });
+    $("#increaseRounds").click(increaseRounds);
+    $("#decreaseRounds").click(decreaseRounds);
+    $("#increaseWork").click({actionComponent: "work", targetComponent: "#workSeconds"}, increaseSeconds);
+    $("#decreaseWork").click({actionComponent: "work", targetComponent: "#workSeconds"}, decreaseSeconds);
+    $("#increaseRest").click({actionComponent: "rest", targetComponent: "#restSeconds"}, increaseSeconds);
+    $("#decreaseRest").click({actionComponent: "rest", targetComponent: "#restSeconds"}, decreaseSeconds);
+	$(document).on('rotarydetent', function(ev) {
 		setsRotaryControl(ev);
 	});
     window.addEventListener('tizenhwkey', function onTizenHwKey(e) {
@@ -30,20 +51,20 @@ function init() {
             if (activePageId === 'roundsPage') {
             	tizen.application.getCurrentApplication().exit();
             } else if (activePageId === 'tabataPage') {
-                if (countDown !== null) {
-                	if (!paused) {
-                		pauseWorkout();
-                	} else {
-                		resumeWorkout();
-                	}
-                } else {
+                    countDown = null;
                 	history.back();
-                }
             } else {
                 history.back();
             }
         }
     });
+}
+
+function init() {
+	setInitialListeners();
+    $("#rounds").text(rounds);
+    $("#workSeconds").text(workSeconds);
+    $("#restSeconds").text(restSeconds);
 }
 
 function setsRotaryControl(ev) {
@@ -58,54 +79,42 @@ function setsRotaryControl(ev) {
 function workRotaryControl(ev) {
 	var direction = ev.detail.direction;
 	if (direction === "CW") {
-		increaseSeconds("work", "#workSeconds");
+		increaseSeconds({actionComponent: "work", targetComponent: "#workSeconds"});
 	} else {
-		decreaseSeconds("work", "#workSeconds");
+		decreaseSeconds({actionComponent: "work", targetComponent: "#workSeconds"});
 	}
 }
 
 function restRotaryControl(ev) {
 	var direction = ev.detail.direction;
 	if (direction === "CW") {
-		increaseSeconds("rest", "#restSeconds");
+		increaseSeconds({actionComponent: "rest", targetComponent: "#restSeconds"});
 	} else {
-		decreaseSeconds("rest", "#restSeconds");
+		decreaseSeconds({actionComponent: "rest", targetComponent: "#restSeconds"});
 	}
 }
 
-function decreaseRounds() {
-    if (rounds > 1) {
-        rounds--;
-        $("#rounds").text(rounds);
-    }
-}
-
-function increaseRounds() {
-    rounds++;
-    $("#rounds").text(rounds);
-}
-
-function decreaseSeconds(actionComponent, targetComponent) {
-    if (actionComponent === "work") {
+function decreaseSeconds(event) {
+    if (event.data.actionComponent === "work") {
         if (workSeconds > secondsOffset) {
             workSeconds -= secondsOffset;
-            $(targetComponent).text(workSeconds);
+            $(event.data.targetComponent).text(workSeconds);
         }
-    } else if (actionComponent === "rest") {
+    } else if (event.data.actionComponent === "rest") {
         if (restSeconds > secondsOffset) {
             restSeconds -= secondsOffset;
-            $(targetComponent).text(restSeconds);
+            $(event.data.targetComponent).text(restSeconds);
         }
     }
 }
 
-function increaseSeconds(actionComponent, targetComponent) {
-    if (actionComponent === "work") {
+function increaseSeconds(event) {
+    if (event.data.actionComponent === "work") {
         workSeconds += secondsOffset;
-        $(targetComponent).text(workSeconds);
-    } else if (actionComponent === "rest") {
+        $(event.data.targetComponent).text(workSeconds);
+    } else if (event.data.actionComponent === "rest") {
         restSeconds += secondsOffset;
-        $(targetComponent).text(restSeconds);
+        $(event.data.targetComponent).text(restSeconds);
     }
 }
 
@@ -194,35 +203,23 @@ function startWorkout() {
 }
 
 function roundsSet() {
-	document.removeEventListener('rotarydetent', function(ev) {
-		setsRotaryControl(ev);
-	});
-    document.addEventListener('rotarydetent', function(ev) {
-    	workRotaryControl(ev);
-	});
+    $(document).off('rotarydetent');
+    $(document).on('rotarydetent', function(ev) {
+        workRotaryControl(ev);
+    });
     tau.changePage("#workTimePage");
 }
 
 function workTimeSet() {
-	document.removeEventListener('rotarydetent', function(ev) {
-    	workRotaryControl(ev);
-	});
-    document.addEventListener('rotarydetent', function(ev) {
-    	restRotaryControl(ev);
-	});
+    $(document).off('rotarydetent');
+    $(document).on('rotarydetent', function(ev) {
+        restRotaryControl(ev);
+    });
     tau.changePage("#restTimePage");
 }
 
 function restTimeSet() {
-	document.removeEventListener('rotarydetent', function(ev) {
-    	restRotaryControl(ev);
-	});
-    $("#start").click(function () {
-        startWorkout();
-    });
-    $("#pause").click(function () {
-        pauseWorkout();
-    });
+    $(document).off('rotarydetent');
     updateRounds();
     $(".roundsSumUp").css('paddingBottom', '2rem');
     $("#secondsLeft").hide();
@@ -230,4 +227,3 @@ function restTimeSet() {
 }
 
 $(document).ready(function(){init()});
-
