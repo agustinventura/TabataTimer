@@ -34,7 +34,9 @@ function setInitialListeners() {
 	$(document).on('rotarydetent', function(ev) {
 		setsRotaryControl(ev);
 	});
-    $(window).on('tizenhwkey', backPressed);
+    $(window).on('tizenhwkey', function(e) {
+    	backPressed(e);
+    });
 }
 
 function decreaseRounds() {
@@ -73,7 +75,7 @@ function decreaseSeconds(event) {
     }
 }
 
-function backPressed() {
+function backPressed(e) {
     var activePageId = tau.activePage.id;
     if (e.originalEvent.keyName === 'back') {
         if (activePageId === 'roundsPage') {
@@ -189,6 +191,7 @@ function stopWorkout() {
     reset();
     updateRounds();
     $("#currentStatus").html("&iquest;Otra?");
+    $(".roundsSumUp").css('paddingBottom', '2rem');
     $("#start").show();
     $("#pause").hide();
     $("#secondsLeft").hide();
