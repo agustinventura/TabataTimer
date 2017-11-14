@@ -34,6 +34,8 @@ function setInitialListeners() {
     $("#decreaseWork").click({actionComponent: "work", targetComponent: "#workSeconds"}, decreaseSeconds);
     $("#increaseRest").click({actionComponent: "rest", targetComponent: "#restSeconds"}, increaseSeconds);
     $("#decreaseRest").click({actionComponent: "rest", targetComponent: "#restSeconds"}, decreaseSeconds);
+    $("#resume").click(resumeWorkout);
+    $("#exit").click(exit);
 	$(document).on('rotarydetent', function(ev) {
 		setsRotaryControl(ev);
 	});
@@ -41,7 +43,7 @@ function setInitialListeners() {
         var activePageId = tau.activePage.id;
         if (e.originalEvent.keyName === 'back') {
             if (activePageId === 'roundsPage') {
-            	tizen.application.getCurrentApplication().exit();
+                exit();
             } else if (activePageId === 'tabataPage') {
                     reset();
                 	history.back();
@@ -50,6 +52,10 @@ function setInitialListeners() {
             }
         }
     });
+}
+
+function exit() {
+    tizen.application.getCurrentApplication().exit();
 }
 
 function reset() {
@@ -164,12 +170,20 @@ function countdown(seconds) {
         nextInterval();
     } else {
         countDown = setInterval(function () {
-            intervalSeconds--;
-            $("#secondsLeft").text(intervalSeconds);
-            if (intervalSeconds < 1) {
-                nextInterval();
-            }
+            refreshSeconds();
+            checkIntervalEnd();
         }, 1000);
+    }
+}
+
+function refreshSeconds() {
+    intervalSeconds--;
+    $("#secondsLeft").text(intervalSeconds);
+}
+
+function checkIntervalEnd() {
+    if (intervalSeconds < 1) {
+        nextInterval();
     }
 }
 
@@ -184,12 +198,6 @@ function pauseWorkout() {
     clearInterval(countDown);
     countDown = null;
     tau.openPopup("#pausePopup");
-    $("#resume").click(function () {
-        resumeWorkout();
-    });
-    $("#exit").click(function() {
-    	tizen.application.getCurrentApplication().exit();
-    });
 }
 
 function startWorkout() {
