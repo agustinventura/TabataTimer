@@ -51,10 +51,6 @@ a.ui-btn:active:hover,
     background-color: #D7073C;
 }
 
-.ui-popup {
-    border: 3px solid #EF003D;
-}
-
 .ui-popup .ui-popup-header {
     background-color: #7F9070;
     color: #F1F8F8;
