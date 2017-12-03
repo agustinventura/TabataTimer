@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://www.digitalsingular.com/TabataTimer" version="1.0.0" viewmodes="maximized">
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://www.digitalsingular.com/TabataTimer" version="1.0.1" viewmodes="maximized">
     <tizen:application id="w9MyIoBFGd.TabataTimer" package="w9MyIoBFGd" required_version="2.3.2"/>
     <author href="www.digitalsingular.com" email="agustinventura@gmail.com">Agustín Ventura</author>
     <content src="index.html"/>
+    <description xml:lang="es-es">TabataTimer es una aplicación para controlar tus sesiones HIIT desde tu dispositivo Gear.
+Introduce el número de rondas, el tiempo de trabajo y el de descanso y ¡empieza a trabajar!
+La aplicación automáticamente te indicará con distintos sonidos y vibraciones si tienes que empezar a trabajar o descansar.
+Además, si estas cansado puedes pausar la sesión y retomarla.</description>
     <description>TabataTimer es una aplicación para controlar tus sesiones HIIT desde tu dispositivo Gear.
 Introduce el número de rondas, el tiempo de trabajo y el de descanso y ¡empieza a trabajar!
 La aplicación automáticamente te indicará con distintos sonidos y vibraciones si tienes que empezar a trabajar o descansar.
 Además, si estas cansado puedes pausar la sesión y retomarla.</description>
-    <description xml:lang="es-es">español</description>
     <feature name="http://tizen.org/feature/screen.size.normal"/>
     <icon src="icon.png"/>
-    <name>TabataTimer</name>
     <name xml:lang="es-es">TabataTimer</name>
+    <name>TabataTimer</name>
     <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
     <tizen:profile name="wearable"/>
     <tizen:setting background-support="disable" encryption="disable" hwkey-event="enable"/>
