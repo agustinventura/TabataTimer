@@ -1,0 +1,18 @@
+{
+	"decreaseRounds": "Disminuir rondas",
+	"increaseRounds": "Aumentar rondas",
+	"rounds": "Rondas",
+	"set": "Ya",
+	"decreaseWork": "Disminuir segundos de trabajo",
+	"increaseWork": "Aumentar segundos de trabajo",
+	"work": "Trabajo",
+	"decreaseRest": "Disminuir segundos de descanso",
+	"increaseRest": "Aumentar segundos de descanso",
+	"rest": "Descanso",
+	"ready": "Listo",
+	"start": "Empezar",
+	"pause": "Pausar",
+	"exit": "¿Quieres salir?",
+	"go": "¡Vamos!",
+	"end": "¿Otra?"
+}

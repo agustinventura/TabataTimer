@@ -1,77 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width,user-scalable=no">
-    <title>Temporizador Tabata</title>
-    <link rel="stylesheet" href="lib/tau/wearable/theme/default/tau.min.css">
-    <link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)"
-          href="lib/tau/wearable/theme/default/tau.circle.min.css">
-    <script type="text/javascript" src="lib/tau/wearable/js/tau.min.js"></script>
-    <!-- load theme file for your application -->
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/tabataTimer.js"></script>
+<meta name="viewport" content="width=device-width,user-scalable=no" />
+<title>Tabata Timer</title>
+<link rel="stylesheet" href="lib/tau/wearable/theme/default/tau.min.css" />
+<link rel="stylesheet" media="all and (-tizen-geometric-shape: circle)"
+	href="lib/tau/wearable/theme/default/tau.circle.min.css" />
+<script type="text/javascript" src="lib/tau/wearable/js/tau.min.js"></script>
+<!-- load theme file for your application -->
+<link rel="stylesheet" href="css/style.css" />
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/tabataTimer.js"></script>
+<script src="js/jqueryTranslator.min.js"></script>
 </head>
 <body>
-<div class="ui-page ui-page-active" id="roundsPage">
-    <header class="ui-header">
-        <div class="decrease"><img id="decreaseRounds" src="./img/decrease.png"/></div>
-        <div class="increase"><img id="increaseRounds" src="./img/increase.png"/></div>
-        <h2 class="ui-title">Rondas</h2>
-    </header>
-    <div class="ui-content content-padding">
-        <p id="rounds" class="selectText">Rondas</p>
-    </div>
-    <footer class="ui-footer ui-bottom-button">
-        <button id="setRounds" class="ui-btn">Ya</button>
-    </footer>
-</div>
-<div class="ui-page" id="workTimePage">
-    <header class="ui-header">
-        <div class="decrease"><img id="decreaseWork" src="./img/decrease.png"/></div>
-        <div class="increase"><img id="increaseWork" src="./img/increase.png"/></div>
-        <h2 class="ui-title">Trabajo</h2>  
-    </header>
-    <div class="ui-content content-padding">
-        <p id="workSeconds" class="selectText">Trabajo</p>
-    </div>
-    <footer class="ui-footer ui-bottom-button">
-        <button id="setWorkTime" class="ui-btn">Ya</button>
-    </footer>
-</div>
-<div class="ui-page" id="restTimePage">
-    <header class="ui-header">
-        <div class="decrease"><img id="decreaseRest" src="./img/decrease.png"/></div>
-        <div class="increase"><img  id="increaseRest"src="./img/increase.png"/></div>
-        <h2 class="ui-title">Descanso</h2>
-    </header>
-    <div class="ui-content content-padding">
-        <p id="restSeconds" class="selectText">Descanso</p>
-    </div>
-    <footer class="ui-footer ui-bottom-button">
-        <button id="setRestTime" class="ui-btn">Listo</button>
-    </footer>
-</div>
-<div class="ui-page" id="tabataPage">
-    <header class="ui-header">
-        <h2 id="currentStatus" class="ui-title">&iquest;Listo?</h2>
-    </header>
-    <div class="ui-content content-padding">
-        <p class="roundsSumUp"><span id="round">ronda</span>/<span id="totalRounds">rondas totales</span>&nbsp;
-        <p id="secondsLeft" class="secondsLeft">segundos</p>
-    </div>
-    <footer class="ui-footer ui-bottom-button">
-        <button id="start" class="ui-btn">Empezar</button>
-        <button id="pause" class="ui-btn">Pausar</button>
-    </footer>
-</div>
-<div id="pausePopup" class="ui-popup">
-    <div class="ui-popup-header">Pausa</div>
-    <div class="ui-popup-content">&iquest;Quieres salir?</div>
-    <div class="ui-popup-footer ui-grid-col-2 ui-side-button">
-        <button id="resume" class="ui-btn btn-icon-cancel"></button>
-        <button id="exit" class="ui-btn btn-icon-ok"></button>
-    </div>
-</div>
+	<div class="ui-page ui-page-active" id="roundsPage">
+		<header class="ui-header">
+			<div class="decrease">
+				<img id="decreaseRounds" src="./img/decrease.png"
+					alt="Decrease rounds" data-translate="decreaseRounds" />
+			</div>
+			<div class="increase">
+				<img id="increaseRounds" src="./img/increase.png"
+					alt="Increase rounds" data-translate="increaseRounds" />
+			</div>
+			<h2 class="ui-title" data-translate="rounds">Rounds</h2>
+		</header>
+		<div class="ui-content content-padding">
+			<p id="rounds" class="selectText">Rounds</p>
+		</div>
+		<footer class="ui-footer ui-bottom-button">
+			<button id="setRounds" class="ui-btn" data-translate="set">Set</button>
+		</footer>
+	</div>
+	<div class="ui-page" id="workTimePage">
+		<header class="ui-header">
+			<div class="decrease">
+				<img id="decreaseWork" src="./img/decrease.png"
+					alt="Decrease work seconds" data-translate="decreaseWork" />
+			</div>
+			<div class="increase">
+				<img id="increaseWork" src="./img/increase.png"
+					alt="Increase work seconds" data-translate="increaseWork" />
+			</div>
+			<h2 class="ui-title" data-translate="work">Work</h2>
+		</header>
+		<div class="ui-content content-padding">
+			<p id="workSeconds" class="selectText">Work</p>
+		</div>
+		<footer class="ui-footer ui-bottom-button">
+			<button id="setWorkTime" class="ui-btn" data-translate="set">Set</button>
+		</footer>
+	</div>
+	<div class="ui-page" id="restTimePage">
+		<header class="ui-header">
+			<div class="decrease">
+				<img id="decreaseRest" src="./img/decrease.png" alt="Decrease rest seconds" data-translate="decreaseRest"/>
+			</div>
+			<div class="increase">
+				<img id="increaseRest" src="./img/increase.png" alt="Increase rest seconds" data-translate="increaseRest"/>
+			</div>
+			<h2 class="ui-title" data-translate="rest">Rest</h2>
+		</header>
+		<div class="ui-content content-padding">
+			<p id="restSeconds" class="selectText">Rest</p>
+		</div>
+		<footer class="ui-footer ui-bottom-button">
+			<button id="setRestTime" class="ui-btn" data-translate="ready">Ready</button>
+		</footer>
+	</div>
+	<div class="ui-page" id="tabataPage">
+		<header class="ui-header">
+			<h2 id="readyStatus" class="ui-title" data-translate="ready">Ready?</h2>
+			<h2 id="workStatus" class="ui-title" data-translate="go">Go!</h2>
+			<h2 id="restStatus" class="ui-title" data-translate="rest">Rest</h2>
+			<h2 id="restStatus" class="ui-title" data-translate="end">One more?</h2>
+		</header>
+		<div class="ui-content content-padding">
+			<p class="roundsSumUp">
+				<span id="round">round</span>/<span id="totalRounds">totalRounds</span>&nbsp;
+			</p>
+			<p id="secondsLeft" class="secondsLeft">secondsLeft</p>
+		</div>
+		<footer class="ui-footer ui-bottom-button">
+			<button id="start" class="ui-btn" data-translate="start">Start</button>
+			<button id="pause" class="ui-btn" data-translate="pause">Pause</button>
+		</footer>
+	</div>
+	<div id="pausePopup" class="ui-popup">
+		<div class="ui-popup-header" data-translate="pause">Pause</div>
+		<div class="ui-popup-content" data-translate="exit">Do you want to exit?</div>
+		<div class="ui-popup-footer ui-grid-col-2 ui-side-button">
+			<button id="resume" class="ui-btn btn-icon-cancel"></button>
+			<button id="exit" class="ui-btn btn-icon-ok"></button>
+		</div>
+	</div>
+	<script>
+		(function(){
+			$("[data-translate]").jqTranslate('tabataTimer');
+		})();
+	</script>
 </body>
 </html>

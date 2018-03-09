@@ -1,0 +1,18 @@
+{
+	"decreaseRounds": "Decrease rounds",
+	"increaseRounds": "Increase rounds",
+	"rounds": "Rounds",
+	"set": "Set",
+	"decreaseWork": "Decrease work seconds",
+	"increaseWork": "Increase work seconds",
+	"work": "Work",
+	"decreaseRest": "Decrease rest seconds",
+	"increaseRest": "Increase rest seconds",
+	"rest": "Rest",
+	"ready": "Ready",
+	"start": "Start",
+	"pause": "Pause",
+	"exit": "Do you want to exit?",
+	"go": "Go!",
+	"end": "One more?"
+}

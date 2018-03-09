@@ -144,7 +144,10 @@ function updateRounds() {
 function restInterval() {
     restAudio.load();
     restAudio.play();
-    $("#currentStatus").text("Descansa");
+    $("#readyStatus").hide();
+    $("#workStatus").hide();
+    $("#endStatus").hide();
+    $("#restStatus").show();
     $("#secondsLeft").text(restSeconds);
     roundsCount++;
     countdown(restSeconds);
@@ -155,7 +158,10 @@ function workInterval() {
     audio.load();
     audio.play();
     updateRounds();
-    $("#currentStatus").html("&iexcl;Vamos!");
+    $("#readyStatus").hide();
+    $("#workStatus").show();
+    $("#endStatus").hide();
+    $("#restStatus").hide();
     $("#secondsLeft").text(workSeconds);
     countdown(workSeconds);
 }
@@ -179,7 +185,10 @@ function startWorkout() {
     $("#start").hide();
     $("#pause").show();
     $("#secondsLeft").show();
-    $("#currentStatus").html("&iexcl;Vamos!");
+    $("#readyStatus").hide();
+    $("#workStatus").show();
+    $("#endStatus").hide();
+    $("#restStatus").hide();
     $("#secondsLeft").text(workSeconds);
     $(".roundsSumUp").css('paddingBottom', '0');
     loadWorkAudio();
@@ -190,7 +199,10 @@ function startWorkout() {
 function stopWorkout() {
     reset();
     updateRounds();
-    $("#currentStatus").html("&iquest;Otra?");
+    $("#readyStatus").hide();
+    $("#workStatus").hide();
+    $("#endStatus").show();
+    $("#restStatus").hide();
     $(".roundsSumUp").css('paddingBottom', '2rem');
     $("#start").show();
     $("#pause").hide();
