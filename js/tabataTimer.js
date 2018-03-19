@@ -90,6 +90,7 @@ function backPressed(e) {
 }
 
 function exit() {
+	tizen.power.release("SCREEN");
     tizen.application.getCurrentApplication().exit();
 }
 
@@ -179,6 +180,7 @@ function loadRestAudio() {
 }
 
 function startWorkout() {
+	tizen.power.request("SCREEN", "SCREEN_NORMAL");
     rest = false;
     roundsCount = 0;
     updateRounds();
@@ -197,6 +199,7 @@ function startWorkout() {
 }
 
 function stopWorkout() {
+	tizen.power.release("SCREEN");
     reset();
     updateRounds();
     $("#readyStatus").hide();
@@ -280,6 +283,10 @@ function restTimeSet() {
     updateRounds();
     $(".roundsSumUp").css('paddingBottom', '2rem');
     $("#secondsLeft").hide();
+    $("#readyStatus").show();
+    $("#workStatus").hide();
+    $("#endStatus").hide();
+    $("#restStatus").hide();
     tau.changePage("#tabataPage");
 }
 

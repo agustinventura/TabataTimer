@@ -15,6 +15,7 @@ Además, si estas cansado puedes pausar la sesión y retomarla.</description>
     <icon src="icon.png"/>
     <name xml:lang="es-es">TabataTimer</name>
     <name>TabataTimer</name>
+    <tizen:privilege name="http://tizen.org/privilege/power"/>
     <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
     <tizen:profile name="wearable"/>
     <tizen:setting background-support="enable" encryption="disable" hwkey-event="enable"/>
