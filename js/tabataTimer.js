@@ -52,25 +52,25 @@ function increaseRounds() {
 }
 
 function increaseSeconds(event) {
-    if (event.data.actionComponent === "work") {
+    if (event.actionComponent === "work") {
         workSeconds += secondsOffset;
-        $(event.data.targetComponent).text(workSeconds);
-    } else if (event.data.actionComponent === "rest") {
+        $(event.targetComponent).text(workSeconds);
+    } else if (event.actionComponent === "rest") {
         restSeconds += secondsOffset;
-        $(event.data.targetComponent).text(restSeconds);
+        $(event.targetComponent).text(restSeconds);
     }
 }
 
 function decreaseSeconds(event) {
-    if (event.data.actionComponent === "work") {
+    if (event.actionComponent === "work") {
         if (workSeconds > secondsOffset) {
             workSeconds -= secondsOffset;
-            $(event.data.targetComponent).text(workSeconds);
+            $(event.targetComponent).text(workSeconds);
         }
-    } else if (event.data.actionComponent === "rest") {
+    } else if (event.actionComponent === "rest") {
         if (restSeconds > secondsOffset) {
             restSeconds -= secondsOffset;
-            $(event.data.targetComponent).text(restSeconds);
+            $(event.targetComponent).text(restSeconds);
         }
     }
 }
@@ -81,9 +81,24 @@ function backPressed(e) {
         if (activePageId === 'roundsPage') {
             exit();
         } else if (activePageId === 'tabataPage') {
+        	tizen.power.release("SCREEN");
             reset();
+            $(document).off('rotarydetent');
+            $(document).on('rotarydetent', function(ev) {
+                restRotaryControl(ev);
+            });
             history.back();
-        } else {
+        } else if (activePageId === 'restTimePage') {
+        	$(document).off('rotarydetent');
+            $(document).on('rotarydetent', function(ev) {
+                workRotaryControl(ev);
+            });
+            history.back();
+        } else if (activePageId === 'workTimePage') {
+        	$(document).off('rotarydetent');
+            $(document).on('rotarydetent', function(ev) {
+                setsRotaryControl(ev);
+            });
             history.back();
         }
     }
@@ -108,6 +123,10 @@ function reset() {
     restAudio = null;
     $("#start").show();
     $("#pause").hide();
+    $("#readyStatus").show();
+    $("#workStatus").hide();
+    $("#endStatus").hide();
+    $("#restStatus").hide();
 }
 
 function setsRotaryControl(ev) {
@@ -199,7 +218,6 @@ function startWorkout() {
 }
 
 function stopWorkout() {
-	tizen.power.release("SCREEN");
     reset();
     updateRounds();
     $("#readyStatus").hide();
